@@ -15,10 +15,13 @@ import RvSpectMLBase: AbstractSpectra, AbstractSpectra1D, AbstractSpectra2D
 import RvSpectMLBase: AbstractChunkOfSpectrum, AbstractChunkList, AbstractChunkListTimeseries
 import RvSpectMLBase: AbstractInstrument
 import RvSpectMLBase: num_chunks
+import RvSpectMLBase: default_ccf_mask_v_width  # So this function can be overriden for each instrument
 
 using DataFrames, Query, CSV
 using LinearAlgebra, StatsBase, Statistics
+using NaNMath # for computing CCFs with NaNs in flux
 using LsqFit  # temporarily using for fitting ccf covariance model in src/calc_rv/ccf_covar_model.jl
+using FITSIO, Pkg, Dates, OrderedCollections # For writing CCFs to FITS files
 
 #import Polynomials
 
